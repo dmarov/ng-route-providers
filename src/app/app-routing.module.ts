@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { RouteService } from './shared/route.service';
 import { RouteAService } from './shared/route-a.service';
 import { RouteBService } from './shared/route-b.service';
+import { ChildComponent } from './child/child.component';
+import { ChildModule } from './child/child.module';
 
 const routes: Routes = [
   {
     path: 'route-a',
-    loadChildren: () => import('./child/child.module').then(m => m.ChildModule),
+    loadChildren: () => ChildModule,
     providers: [
       {
         provide: RouteService,
@@ -17,7 +19,10 @@ const routes: Routes = [
   },
   {
     path: 'route-b',
-    loadChildren: () => import('./child/child.module').then(m => m.ChildModule),
+    children: [{
+      path: '',
+      component: ChildComponent,
+    }],
     providers: [
       {
         provide: RouteService,
@@ -28,7 +33,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), ChildModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

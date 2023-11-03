@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { SubChildComponent } from './sub-child.component';
 
 
@@ -9,7 +10,8 @@ import { SubChildComponent } from './sub-child.component';
     SubChildComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatDialogModule,
   ],
   exports: [
     SubChildComponent
