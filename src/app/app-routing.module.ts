@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { RouteService } from './shared/route.service';
 import { RouteAService } from './shared/route-a.service';
 import { RouteBService } from './shared/route-b.service';
-import { ChildComponent } from './child/child.component';
 import { ChildModule } from './child/child.module';
 
 const routes: Routes = [
@@ -19,10 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'route-b',
-    children: [{
-      path: '',
-      component: ChildComponent,
-    }],
+    loadChildren: () => ChildModule,
     providers: [
       {
         provide: RouteService,
